@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import logoReact from "../assets/react.svg"
 function Navbar() {
     return (
@@ -9,13 +10,13 @@ function Navbar() {
                 <div>
                     <ul className="flex space-x-4">
                         <li>
-                            <a href="">Home</a>
+                            <NavLink to="/">Home</NavLink>
                         </li>
                         <li>
-                            <a href="">About</a>
+                            <NavLink to="/about">About</NavLink>
                         </li>
                         <li>
-                            <a href="">Products</a>
+                            <NavLink to="/products">Products</NavLink>
                         </li>
                     </ul>
                 </div>
