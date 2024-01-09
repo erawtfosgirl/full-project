@@ -7,6 +7,10 @@ const store = configureStore({
     reducer: {
         'products': productSlice,
         [productsApi.reducerPath]:productsApi.reducer
+    },
+    middleware:(getDefaultMiddleware)=>{
+        return getDefaultMiddleware()
+        .concat(productsApi.middleware)
     }
 })
 
