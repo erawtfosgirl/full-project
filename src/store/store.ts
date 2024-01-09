@@ -1,16 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productSlice from "./products/product-slice";
-import { productsApi } from "./products/product-api";
+import productSlice from "./products/productSlice";
+import { productsApi } from "./products/productApi";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
+import { categoriesApi } from "./categories/categoriesApi";
 
 const store = configureStore({
     reducer: {
         'products': productSlice,
-        [productsApi.reducerPath]:productsApi.reducer
+        [productsApi.reducerPath]: productsApi.reducer,
+        [categoriesApi.reducerPath]: categoriesApi.reducer
     },
-    middleware:(getDefaultMiddleware)=>{
+    middleware: (getDefaultMiddleware) => {
         return getDefaultMiddleware()
-        .concat(productsApi.middleware)
+            .concat(productsApi.middleware)
+            .concat(categoriesApi.middleware)
     }
 })
 
