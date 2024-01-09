@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import productSlice from "./products/product-slice";
+import { productsApi } from "./products/product-api";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 const store = configureStore({
     reducer: {
-        'products': productSlice
+        'products': productSlice,
+        [productsApi.reducerPath]:productsApi.reducer
     }
 })
 
