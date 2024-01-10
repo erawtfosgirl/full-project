@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Card from "../components/Card";
 import SelectFilter from "../components/SelectFilter";
 import Skeleton from "../components/Skeleton";
@@ -5,8 +6,14 @@ import { useGetProductsByCategoryQuery } from "../store/categories/categoriesApi
 import { SingleProductType } from "../types/type";
 
 function Products() {
-   const { data, isLoading, isError } = useGetProductsByCategoryQuery('electronics');
-   const skeletonArray = Array.from({ length: 10 }, (_, index) => index)
+   const [categoryName,setCategoryName]=useState('electronics')
+   const { data, isLoading, isError } = useGetProductsByCategoryQuery(categoryName);
+   const skeletonArray = Array.from({ length: 10 }, (_, index) => index);
+
+   function selectCategoryName(categoryName:string){
+     setCategoryName(categoryName)
+   }
+
    let content;
    if (isLoading) {
       content = (
@@ -32,7 +39,7 @@ function Products() {
       <>
          <h1 className="text-center py-5">Products Page</h1>
          <div className="flex justify-end items-center gap-x-2 my-5">
-            <SelectFilter />
+            <SelectFilter selectCategoryName={selectCategoryName} />
          </div>
          {content}
       </>

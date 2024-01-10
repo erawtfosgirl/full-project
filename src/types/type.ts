@@ -14,3 +14,7 @@ export type SingleProductType = {
 export interface ProductsType {
     products: SingleProductType[]
 }
+
+export interface SelectFilterProps {
+    selectCategoryName: (value: string) => void;
+}
